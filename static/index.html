@@ -53,7 +53,7 @@ function sendJSONXMLHTTPRequest(url, objects, callback) {
     // Remember to use application/json !
     xhr.open("POST", url);
     xhr.overrideMimeType("application/json");
-    xhr.send();
+    xhr.send(JSON.stringify(objects));
 }
 
 
@@ -149,7 +149,7 @@ function addEntity(entity, data) {
     drawNextFrame(); // (but should we?)
     //XXX: Send a XHTML Request that updates the entity you just  modified!
     var xhr = new XMLHttpRequest();
-    xhr.open("PUT", "http://127.0.0.1:5000/entity/" + entity);
+    xhr.open("PUT", "/entity/" + entity);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(JSON.stringify(data));
 }
@@ -290,7 +290,7 @@ function update() {
             }
         }
     };
-    xhr.open("GET", "http://127.0.0.1:5000/world");
+    xhr.open("GET", "/world");
     xhr.overrideMimeType("application/json");
     xhr.send();
     drawNextFrame();
